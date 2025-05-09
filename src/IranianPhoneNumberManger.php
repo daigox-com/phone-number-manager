@@ -154,13 +154,13 @@ final class IranianPhoneNumberManger
         return self::getOperator($input) !== null;
     }
 
-    public static function getPrefix(string $input): ?string
+    public static function getPrefix(string $input, bool $withoutZero = true): ?string
     {
         $digits = self::normalize($input);
         foreach (self::getPrefixesOrderedDesc() as $prefixes) {
             foreach ($prefixes as $prefix) {
                 if (str_starts_with('0' . $digits, $prefix)) {
-                    return $prefix;
+                    return $withoutZero ? ltrim($prefix, '0') : $prefix;
                 }
             }
         }
