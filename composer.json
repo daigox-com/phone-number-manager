@@ -1,0 +1,19 @@
+{
+    "name": "daigox-com/phone-number-manager",
+    "type": "library",
+    "license": "MIT",
+    "description": "A library for managing phone numbers",
+    "autoload": {
+        "psr-4": {
+            "Daigox\\PhoneNumberManager\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "daigox-com",
+            "email": "daigox.official@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {}
+}
