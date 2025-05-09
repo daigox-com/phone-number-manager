@@ -22,7 +22,7 @@ use InvalidArgumentException;
 /**
  * Static utility class for working with Iranian mobile numbers.
  */
-final class PhoneNumberManager
+final class IranianPhoneNumberManger
 {
     /** Country calling code without + */
     public const COUNTRY_CODE = '98';
