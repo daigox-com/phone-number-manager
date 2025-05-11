@@ -15,46 +15,59 @@
 
 declare(strict_types=1);
 
-namespace Daigox\PhoneNumberManager;
+namespace Daigox\PhoneNumberManager\Managers;
 
+use Daigox\PhoneNumberManager\Operators\IranianOperators;
 use InvalidArgumentException;
 
 /**
  * Static utility class for working with Iranian mobile numbers.
  */
-final class IranianPhoneNumberManger
+final class IranianPhoneNumberManager
 {
     /** Country calling code without + */
     public const COUNTRY_CODE = '98';
     public const LOCAL_TRUNK  = '0';
 
     /**
+     * Operator constants for easy access
+     */
+    public const OPERATOR_HAMRAHE_AVAL = IranianOperators::HAMRAHE_AVAL;
+    public const OPERATOR_IRANCELL = IranianOperators::IRANCELL;
+    public const OPERATOR_RIGHTEL = IranianOperators::RIGHTEL;
+    public const OPERATOR_SHATEL = IranianOperators::SHATEL;
+    public const OPERATOR_AZARTAKHT = IranianOperators::AZARTAKHT;
+    public const OPERATOR_SAMANTEL = IranianOperators::SAMANTEL;
+    public const OPERATOR_APTELL = IranianOperators::APTELL;
+    public const OPERATOR_TALIYA = IranianOperators::TALIYA;
+    public const OPERATOR_LOTUSTEL = IranianOperators::LOTUSTEL;
+    public const OPERATOR_ANARESTAN = IranianOperators::ANARESTAN;
+    public const OPERATOR_AZARTAKHT_MVNO = IranianOperators::AZARTAKHT_MVNO;
+    public const OPERATOR_SAMANTEL_MVNO = IranianOperators::SAMANTEL_MVNO;
+
+    /**
      * Operator prefixes (leading 0 included).
-     * Updated: May 2025.
+     * Updated: May 2025.
      */
     private const OPERATOR_PREFIXES = [
-        'hamrah-e-aval' => [
+        self::OPERATOR_HAMRAHE_AVAL => [
             '0910','0911','0912','0913','0914','0915','0916','0917','0918','0919',
             '0990','0991','0992','0993','0994','0995','0996',
         ],
-        'irancell' => [
+        self::OPERATOR_IRANCELL => [
             '0930','0933','0935','0936','0937','0938','0939',
             '0900','0901','0902','0903','0904','0905','0941',
         ],
-        'rightel' => ['0920','0921','0922','0923'],
-        'shatel-mobile' => [
+        self::OPERATOR_RIGHTEL => ['0920','0921','0922','0923'],
+        self::OPERATOR_SHATEL => [
             '099810','099811','099812','099813','099814','099815','099816','099817',
             '099818','099819','099820','099821',
         ],
-        'samantel' => ['09999','099999','099996','099997','099998'],
-        'tele-kish' => ['0934'],
-        'taliya' => ['0932'],
-        'spadan' => ['0931'],
-        'aptel' => ['099910','099911','099913'],
-        'azartel' => ['099914'],
-        'lotustel' => ['09990'],
-        'ariantel' => ['09998'],
-        'anarstan' => ['0994','09944','09945','09908','09932','09933'],
+        self::OPERATOR_SAMANTEL => ['09999','099999','099996','099997','099998'],
+        self::OPERATOR_APTELL => ['099910','099911','099913'],
+        self::OPERATOR_AZARTAKHT => ['099914'],
+        self::OPERATOR_LOTUSTEL => ['09990'],
+        self::OPERATOR_ANARESTAN => ['0994','09944','09945','09908','09932','09933'],
     ];
 
     /* -------------------------------------------------------------------- */
@@ -210,4 +223,4 @@ final class IranianPhoneNumberManger
         }
         return $cache;
     }
-}
+} 

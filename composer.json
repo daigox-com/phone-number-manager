@@ -1,19 +1,21 @@
 {
-    "name": "daigox-com/phone-number-manager",
+    "name": "daigox/phone-number-manager",
+    "description": "A complete helper for validating, parsing and formatting Iranian mobile phone numbers",
     "type": "library",
     "license": "MIT",
-    "description": "A library for managing phone numbers",
+    "authors": [
+        {
+            "name": "Daigox",
+            "email": "info@daigox.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
     "autoload": {
         "psr-4": {
             "Daigox\\PhoneNumberManager\\": "src/"
         }
     },
-    "authors": [
-        {
-            "name": "daigox-com",
-            "email": "daigox.official@gmail.com"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {}
+    "minimum-stability": "stable"
 }
