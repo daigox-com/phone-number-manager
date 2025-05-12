@@ -18,6 +18,7 @@ declare(strict_types=1);
 namespace Daigox\PhoneNumberManager\Managers;
 
 use Daigox\PhoneNumberManager\Operators\IranianOperators;
+use Daigox\PhoneNumberManager\Operators\CountryCallingCodes;
 use InvalidArgumentException;
 
 /**
@@ -26,7 +27,7 @@ use InvalidArgumentException;
 final class IranianPhoneNumberManager
 {
     /** Country calling code without + */
-    public const COUNTRY_CODE = '98';
+    private static string $countryCode = '98';
     public const LOCAL_TRUNK  = '0';
 
     /**
@@ -173,7 +174,7 @@ final class IranianPhoneNumberManager
 
     public static function formatInternational(string $input): string
     {
-        return '+' . self::COUNTRY_CODE . self::normalize($input);
+        return '+' . self::getCountryCode() . self::normalize($input);
     }
 
     public static function formatLocal(string $input): string
@@ -189,7 +190,7 @@ final class IranianPhoneNumberManager
     public static function formatRFC3966(string $input): string
     {
         $parts = self::split($input);
-        return 'tel:+' . self::COUNTRY_CODE . '-' . ltrim($parts['prefix'], '0') . '-' . $parts['middle'] . '-' . $parts['last'];
+        return 'tel:+' . self::getCountryCode() . '-' . ltrim($parts['prefix'], '0') . '-' . $parts['middle'] . '-' . $parts['last'];
     }
 
     /* -------------------------------------------------------------------- */
@@ -222,5 +223,14 @@ final class IranianPhoneNumberManager
             $cache[$operator] = $prefixes;
         }
         return $cache;
+    }
+
+    /**
+     * Get the country calling code
+     * @return string
+     */
+    public static function getCountryCode(): string
+    {
+        return self::$countryCode;
     }
 } 

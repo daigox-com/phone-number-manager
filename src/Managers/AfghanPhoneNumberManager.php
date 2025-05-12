@@ -18,6 +18,7 @@ declare(strict_types=1);
 namespace Daigox\PhoneNumberManager\Managers;
 
 use Daigox\PhoneNumberManager\Operators\AfghanOperators;
+use Daigox\PhoneNumberManager\Operators\CountryCallingCodes;
 use InvalidArgumentException;
 
 /**
@@ -26,8 +27,17 @@ use InvalidArgumentException;
 final class AfghanPhoneNumberManager
 {
     /** Country calling code without + */
-    public const COUNTRY_CODE = '93';
+    private static string $countryCode = '93';
     public const LOCAL_TRUNK  = '0';
+
+    /**
+     * Get the country calling code
+     * @return string
+     */
+    public static function getCountryCode(): string
+    {
+        return self::$countryCode;
+    }
 
     /**
      * Operator constants for easy access
@@ -163,7 +173,7 @@ final class AfghanPhoneNumberManager
 
     public static function formatInternational(string $input): string
     {
-        return '+' . self::COUNTRY_CODE . self::normalize($input);
+        return '+' . self::getCountryCode() . self::normalize($input);
     }
 
     public static function formatLocal(string $input): string
@@ -179,7 +189,7 @@ final class AfghanPhoneNumberManager
     public static function formatRFC3966(string $input): string
     {
         $parts = self::split($input);
-        return 'tel:+' . self::COUNTRY_CODE . '-' . ltrim($parts['prefix'], '0') . '-' . $parts['middle'] . '-' . $parts['last'];
+        return 'tel:+' . self::getCountryCode() . '-' . ltrim($parts['prefix'], '0') . '-' . $parts['middle'] . '-' . $parts['last'];
     }
 
     /* -------------------------------------------------------------------- */
