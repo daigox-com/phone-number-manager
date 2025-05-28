@@ -171,7 +171,6 @@ final class IranianPhoneNumberManager
     /* -------------------------------------------------------------------- */
     /*  Formatting                                                          */
     /* -------------------------------------------------------------------- */
-
     public static function formatInternational(string $input): string
     {
         return '+' . self::getCountryCode() . self::normalize($input);
@@ -191,6 +190,53 @@ final class IranianPhoneNumberManager
     {
         $parts = self::split($input);
         return 'tel:+' . self::getCountryCode() . '-' . ltrim($parts['prefix'], '0') . '-' . $parts['middle'] . '-' . $parts['last'];
+    }
+
+    public static function formatDashed(string $input): string
+    {
+        $parts = self::split($input);
+        return $parts['prefix'] . '-' . $parts['middle'] . '-' . $parts['last'];
+    }
+
+    public static function formatSpaced(string $input): string
+    {
+        $parts = self::split($input);
+        return $parts['prefix'] . ' ' . $parts['middle'] . ' ' . $parts['last'];
+    }
+
+    public static function formatDotted(string $input): string
+    {
+        $parts = self::split($input);
+        return $parts['prefix'] . '.' . $parts['middle'] . '.' . $parts['last'];
+    }
+
+    public static function formatParentheses(string $input): string
+    {
+        $parts = self::split($input);
+        return '(' . $parts['prefix'] . ') ' . $parts['middle'] . '-' . $parts['last'];
+    }
+
+    public static function formatInternationalSpaced(string $input): string
+    {
+        $parts = self::split($input);
+        return '+' . self::getCountryCode() . ' ' . ltrim($parts['prefix'], '0') . ' ' . $parts['middle'] . ' ' . $parts['last'];
+    }
+
+    public static function formatInternationalDashed(string $input): string
+    {
+        $parts = self::split($input);
+        return '+' . self::getCountryCode() . '-' . ltrim($parts['prefix'], '0') . '-' . $parts['middle'] . '-' . $parts['last'];
+    }
+
+    public static function formatE164(string $input): string
+    {
+        return '+' . self::getCountryCode() . self::normalize($input);
+    }
+
+    public static function formatNational(string $input): string
+    {
+        $parts = self::split($input);
+        return '(' . $parts['prefix'] . ') ' . $parts['middle'] . ' ' . $parts['last'];
     }
 
     /* -------------------------------------------------------------------- */
