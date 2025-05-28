@@ -171,10 +171,6 @@ final class IranianPhoneNumberManager
     /* -------------------------------------------------------------------- */
     /*  Formatting                                                          */
     /* -------------------------------------------------------------------- */
-    public static function formatInternational(string $input): string
-    {
-        return '+' . self::getCountryCode() . self::normalize($input);
-    }
 
     public static function formatLocal(string $input): string
     {
